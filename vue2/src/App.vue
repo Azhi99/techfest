@@ -1,9 +1,9 @@
 
 <template>
     <v-app>
-        <APPNavbar></APPNavbar>
+        <APPNavbar v-if="$store.state.isLoggedIn"></APPNavbar>
         <v-main>
-        <router-view/>
+            <router-view/>
         </v-main>
     </v-app>
 </template>

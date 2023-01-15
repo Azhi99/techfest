@@ -83,6 +83,7 @@ class VisitorsController {
                 })
             } else {
                 Visitors.createOne(data_visitor).then(data => {
+                    data_check_in.visitor_id = data.visitor_id
                     VisitorsCheckIn.createOne(data_check_in).then(() => {
                         res.status(200).json({new_data : data})
                     })

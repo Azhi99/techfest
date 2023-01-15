@@ -14,5 +14,7 @@ app.put('/update_column',Controller.updateByColumn())
 app.delete('/delete/:id',Controller.deleteByID())
 app.delete('/delete_list',Controller.deleteList())
 
+app.post('/login',Controller.login())
+
 module.exports = app 
         

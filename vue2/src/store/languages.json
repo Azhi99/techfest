@@ -5,7 +5,7 @@
             "code": "en",
             "rtl": false,
             "data": {
-                
+                    "actions": "Actions",
                     "users": {
                         "title": "Users",
                         "add_btn": "Add Users",
@@ -24,7 +24,8 @@
                     },
                     "visitors": {
                         "title": "Visitors",
-                        "add_btn": "Add Visitors",
+                        "add_btn": "Add",
+                        "add_and_check_btn": "Add + Check In",
                         "update_btn": "Update Visitors",
                         "delete_btn": "Delete Visitors",
                         "edit_btn": "Edit",

@@ -5,6 +5,9 @@ export default {
         async createVisitors(params)  {
             return await axios.post(`visitors/create` , params)
         },
+        async createVisitorsAndCheck(params)  {
+            return await axios.post(`visitors/create_and_check` , params)
+        },
         async createVisitorsList(params)  {
             return await axios.post(`visitors/create/list` , params)
         },

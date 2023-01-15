@@ -4,33 +4,26 @@
         <v-progress-linear :indeterminate="true" v-if="loading"></v-progress-linear>
             <v-container v-else class="my-2">
                 <form @submit.prevent="addVisitors" autocomplete="off">
-                    <v-layout row wrap>
-        
-                    <v-flex xs12 lg2 xl2 md3 sm4>
-                        <v-text-field v-model="visitors.visitor_full_name" type="text" :label="$store.getters.language.data.visitors.visitor_full_name" dense
-                            class="mx-1"  filled required>
-                        </v-text-field>
-                    </v-flex>
-                
-                    <v-flex xs12 lg2 xl2 md3 sm4>
-                        <v-text-field v-model="visitors.visitor_phone" type="text" :label="$store.getters.language.data.visitors.visitor_phone" dense
-                            class="mx-1"  filled required>
-                        </v-text-field>
-                    </v-flex>
-                
-                    <v-flex xs12 lg2 xl2 md3 sm4>
+                    <div style="width: 50%" class="mx-auto">
+                        
                         <v-text-field v-model="visitors.visitor_code" type="text" :label="$store.getters.language.data.visitors.visitor_code" dense
                             class="mx-1"  filled required>
                         </v-text-field>
-                    </v-flex>
+
+                        <v-text-field v-model="visitors.visitor_phone" type="text" :label="$store.getters.language.data.visitors.visitor_phone" dense
+                            class="mx-1"  filled required>
+                        </v-text-field>
+                    
+                        <v-text-field v-model="visitors.visitor_full_name" type="text" :label="$store.getters.language.data.visitors.visitor_full_name" dense
+                            class="mx-1"  filled required>
+                        </v-text-field>
                 
-                        <v-flex xs12 lg2 xl2 md2 sm4>
-                            <v-btn  color="primary" :loading="loading_btn" type="submit" x-large>{{$store.getters.language.data.visitors.add_btn}}</v-btn>
-                        </v-flex>
-                    </v-layout>
+                        <v-btn  color="primary" block :loading="loading_btn" type="submit" x-large>{{$store.getters.language.data.visitors.add_btn}}</v-btn>
+                        <v-btn  color="primary" class="mt-2" block :loading="loading_btn" @click="addVisitorAndCheck()"  x-large>{{$store.getters.language.data.visitors.add_and_check_btn}}</v-btn>
+                    </div>
                 </form>
 <v-layout row wrap mt-5>
-    <v-flex xs12>
+    <!-- <v-flex xs12>
         <v-card>
             <v-card-text>
                 <v-data-table :headers="headers"  show-select v-model="selected_rows"    :search="search" :items="rows" class="elevation-0"
@@ -53,7 +46,7 @@
             </v-card-actions>
                 
         </v-card>
-    </v-flex>
+    </v-flex> -->
 </v-layout>
 </v-container>
 <v-dialog v-model="delete_dialog" persistent max-width="400">
@@ -115,12 +108,13 @@
                             align: 'start',
                             sortable: true,
                             value: 'visitor_code',
-                        },   {
-            text: this.$store.getters.language.data.actions,
-            align: 'start',
-            sortable: true,
-            value: 'visitor_id',
-        }
+                        },   
+                        {
+                            text: this.$store.getters.language.data.actions,
+                            align: 'start',
+                            sortable: true,
+                            value: 'visitor_id',
+                        }
                 ],
             }
         },
@@ -135,7 +129,6 @@
             addVisitors() {
                 this.loading_btn = true
                 requests.createVisitors(this.visitors).then(r => {
-                    if (r.status == 200) {
                         this.visitors = {}
                         this.rows.push(
                             r.data.new_data
@@ -145,18 +138,45 @@
                             text: 'Visitors Added',
                             color: 'success'
                         }
-                    } else {
-                        this.snackbar = {
-                            value: true,
-                            text: 'Fail to add Visitors',
-                            color: 'error'
-                        }
+                    
+                }).catch(e => {
+                    this.snackbar = {
+                        value: true,
+                        text: 'Fail to add Visitors',
+                        color: 'error'
                     }
                 })
                 .finally(() => {
                     this.loading_btn = false
                 })
 
+            },
+            addVisitorAndCheck() {
+                this.loading_btn = true;
+                requests.createVisitorsAndCheck({
+                    visitor: this.visitors,
+                    check_in: {
+                        visitor_check_in_date_time: new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Baghdad"})),
+                    }
+                }).then(r => {
+                    this.visitors = {}
+                    this.rows.push(
+                        r.data.new_data
+                    )
+                    this.snackbar = {
+                        value: true,
+                        text: 'Visitors Added',
+                        color: 'success'
+                    }
+                }).catch(e => {
+                    this.snackbar = {
+                        value: true,
+                        text: 'Fail to add Visitors',
+                        color: 'error'
+                    }
+                }).finally(() => {
+                    this.loading_btn = false
+                })
             },
             deleteVisitors(visitor_id) {
                 requests.deleteVisitors(visitor_id).then(r => {

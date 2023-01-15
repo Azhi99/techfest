@@ -1,5 +1,7 @@
 
 const Users = require('../models/users.model')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const validationForm = require('../validations/users.validation')
         
 class UsersController {
@@ -192,6 +194,46 @@ class UsersController {
             } else {
                 res.status(401).json({
                     message: 'list is required'
+                })
+            }
+        }
+    }
+
+    login = () => {
+        return (req, res, next) => {
+            const user_name = req.body.user_name
+            const password = req.body.password
+            if (!user_name || !password) {
+                res.status(401).json({
+                    message: 'validation error'
+                })
+            } else {
+                Users.getByColumn('user_name', user_name).then(data => {
+                    if (data.length > 0) {
+                        if (data[0].password == password) {
+                            res.status(200).json({
+                                message: 'login success',
+                                user: {
+                                    user_id: data[0].user_id,
+                                    user_name: data[0].user_name
+                                },
+                                token: jwt.sign({
+                                    user_id: data[0].user_id,
+                                    user_name: data[0].user_name
+                                }, process.env.TOKEN_SECRET)
+                            })
+                        } else {
+                            res.status(401).json({
+                                message: 'login failed'
+                            })
+                        }
+                    } else {
+                        res.status(401).json({
+                            message: 'login failed'
+                        })
+                    }
+                }).catch(err => {
+                    res.status(400).json(err)
                 })
             }
         }

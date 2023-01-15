@@ -1,6 +1,7 @@
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
+import store from '../store/index'
 Vue.use(VueRouter)
 const routes = [
     {
@@ -8,7 +9,7 @@ const routes = [
         name: 'Home',
         component: () => import('./../views/Home.vue'),
         meta:{
-            auth : false,
+            auth : true,
             title : 'Home'
         }
     },
@@ -67,10 +68,51 @@ const routes = [
             title : 'Visitor_check_in Edit'
         }
     },
+    {
+        path: '/visitor_list',
+        name: 'ViewVisitor list',
+        component: () => import('./../views/Visitors/Visitors List.vue'),
+        meta:{
+            auth : true,
+            title : 'Visitor list'
+        }
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import('./../views/login.vue'),
+        meta:{
+            auth : false,
+            title : 'Login'
+        }
+    },
 ]
 const router = new VueRouter({
     routes,
     mode:'history'
+})
+
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.auth)){
+        const token = localStorage.getItem('techfest_token')
+        if(!token) {
+            router.push('/login')
+        } else {
+            axios.post('/verifyToken', {
+                token
+            }).then(r => {
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+                localStorage.setItem('techfest_token', token)
+                store.state.isLoggedIn = true
+                next()
+            }).catch(e => {
+                router.push('/login')
+            })
+        }
+    } else {
+        next()
+    }
+
 })
 
 export default router

@@ -5,11 +5,12 @@
             <v-container v-else class="my-2">
                 <form @submit.prevent="addVisitorCheckIn" autocomplete="off">
                     <v-layout row wrap>
-        
+
+    
                         <v-flex xs12 lg2 xl2 md3 sm4>
-                                <v-select class="mx-1" clearable  :items="visitors" v-model="visitor_check_in.visitor_id" dense  filled item-text="visitor_id"
-                                    item-value="visitor_id" :return-object="false" :label="$store.getters.language.data.visitor_check_in.visitor_id">
-                                </v-select>
+                            <v-autocomplete class="mx-1" clearable  :items="visitors" v-model="visitor_check_in.visitor_id" dense  filled item-text="visitor_full_name"
+                                item-value="visitor_id" :return-object="false" :label="$store.getters.language.data.visitors.visitor_full_name">
+                            </v-autocomplete>
                         </v-flex>
                 
                     <v-flex xs12 lg2 xl2 md3 sm4>
@@ -27,6 +28,7 @@
     <v-flex xs12>
         <v-card>
             <v-card-text>
+                <v-text-field label="Search" v-model="search"></v-text-field>
                 <v-data-table :headers="headers"  show-select v-model="selected_rows"    :search="search" :items="rows" class="elevation-0"
                     item-key="visitor_check_in_id">
                     <template v-slot:[`item.visitor_check_in_id`]="{ item }">
@@ -73,6 +75,7 @@
 </template>
 <script>
     import requests from './../../requests/visitor_check_in.request.js'
+    import visitors_requests from './../../requests/visitors.request.js'
     export default {
         data() {
             return {
@@ -87,16 +90,23 @@
                     color: ''
                 },
                 rows:[],
+                visitors:[],
                 selected_visitor_check_in : {},
                 delete_dialog: false,
                 headers: [
 
                     
                         { 
-                            text: this.$store.getters.language.data.visitor_check_in.visitor_id,
+                            text: this.$store.getters.language.data.visitors.visitor_full_name,
                             align: 'start',
                             sortable: true,
-                            value: 'visitor_id',
+                            value: 'visitor_full_name',
+                        },
+                        { 
+                            text: this.$store.getters.language.data.visitors.visitor_phone,
+                            align: 'start',
+                            sortable: true,
+                            value: 'visitor_phone',
                         },
                         { 
                             text: this.$store.getters.language.data.visitor_check_in.visitor_check_in_date_time,
@@ -114,16 +124,19 @@
         },
         computed: {
             
-                    visitors(){
-                        return this.$store.getters.visitors_list
-                    },
-                    
-            
         },
         mounted(){
             this.readVisitorCheckIn();
+            this.readVisitors()
         },
         methods: {
+            readVisitors() {
+                visitors_requests.getAllVisitors().then(r => {
+                    
+                    this.visitors = r.data.rows
+                    
+                })
+            },
             addVisitorCheckIn() {
                 this.loading_btn = true
                 requests.createVisitorCheckIn(this.visitor_check_in).then(r => {

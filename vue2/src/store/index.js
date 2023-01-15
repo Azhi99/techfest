@@ -15,6 +15,7 @@ export default new Vuex.Store({
         visitors_list: [],
         
         visitor_check_in_list: [],
+        isLoggedIn: false,
         
     },
     getters: {

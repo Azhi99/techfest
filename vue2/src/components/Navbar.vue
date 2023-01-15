@@ -4,9 +4,11 @@
         <v-app-bar app class="navbar">
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-btn icon="" to="/">
-                <v-icon>fas fa-home</v-icon>
+                <v-icon>mdi-home</v-icon>
             </v-btn>
             <v-app-bar-title>{{$store.getters.language.app_name}}</v-app-bar-title>
+            <v-spacer></v-spacer>
+            <v-btn color="error" icon @click="logout()"> <v-icon> mdi-logout </v-icon> </v-btn>
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app :right="$store.getters.language.rtl">
             <template v-slot:prepend>
@@ -28,6 +30,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data: function () {
         return {
@@ -55,10 +58,22 @@ export default {
                         path : '/visitor_check_in-list',
                         title : 'Visitor Check In',
                     },
+                    {
+                        path : '/visitor_list',
+                        title : 'Visitor List',
+                    },
             
             ]
         },
-    }
+    },
+    methods: {
+        logout() {
+            localStorage.removeItem('techfest_token')
+            axios.defaults.headers.common['Authorization'] = null
+            this.$store.state.isLoggedIn = false
+            this.$router.push('/login')
+        },
+    },
 }
 </script>
         
