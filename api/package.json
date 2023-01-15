@@ -1,1 +1,29 @@
-{"name":"appname","version":"1.0.0","description":"Node.js Rest Apis with Express, knex & MySQL","main":"app.js","scripts":{"test":"echo \"Error: no test specified\" && exit 1","start":"nodemon app.js"},"keywords":["knex","API"],"author":"Baxtiar Hama","license":"ISC","dependencies":{"@hapi/joi":"^17.1.1","body-parser":"^1.19.2","express":"^4.17.3","knex":"^1.0.4","morgan":"^1.10.0","dotenv":"^16.0.0","mysql":"^2.18.1","mysql2":"^2.3.3"},"devDependencies":{"nodemon":"^2.0.15"}}
+{
+  "name": "appname",
+  "version": "1.0.0",
+  "description": "Node.js Rest Apis with Express, knex & MySQL",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "knex",
+    "API"
+  ],
+  "author": "Baxtiar Hama",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "knex": "^1.0.4",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
