@@ -1,0 +1,1698 @@
+[
+            {
+                "route_name": "users",
+                "route_url": "/users",
+                "route_key": "user_id",
+                "schema": {
+                    "type": "table",
+                    "properties": [
+                        
+                {
+                    "name": "user_id",
+                    "type": "int",
+                    "primary_key": true
+                },
+                {
+                    "name": "user_name",
+                    "type": "varchar",
+                    "primary_key": false
+                },
+                {
+                    "name": "password",
+                    "type": "varchar",
+                    "primary_key": false
+                }
+                    ]
+                },
+                "routes": [{
+                        "route_name": "users_list",
+                        "route_url": "/users/all",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "List all users",
+                        "request": {
+                            "parameters": []
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/users/all",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    }, {
+                        "route_name": "users_detail",
+                        "route_url": "/users/all/{user_id}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Get users detail",
+                        "request": {
+                            "parameters": [{
+                                "name": "user_id",
+                                "type": "integer",
+                                "parameter_type": "path",
+                                "description": "users ID",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/users/all/{user_id}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "users_filter",
+                        "route_url": "/users/filter?column={column_name}&value={value}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Filter users by single column",
+                        "request": {
+                            "parameters": [
+                                {
+                                    "name": "column_name",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Column Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Value",
+                                    "required": true
+                                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/users/filter?column={column_name}&value={value}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "users_report",
+                        "route_url": "/users/report?{column_name}={value}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Report users by single/multiple column using & operator",
+                        "request": {
+                            "parameters": [{
+                                "name": "column_name",
+                                "type": "string",
+                                "parameter_type": "query",
+                                "description": "Column Name",
+                                "required": false
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/users/report?{column_name}={value}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "users_create_one",
+                        "route_url": "/users/create",
+                        "method": "POST",
+                        "color": "warning",
+                        "description": "Create one users",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "user_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                {
+                    "name": "user_name",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                {
+                    "name": "password",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "post",
+                            "url": "/users/create",
+                            "hasData": true,
+                            "data": ",{ params : {'user_name': 'varchar(100)','password': 'varchar(255)'}}"
+                        }
+                    },
+                    {
+                        "route_name": "users_create_list",
+                        "route_url": "/users/create/list",
+                        "method": "POST",
+                        "color": "warning",
+                        "description": "Create multiple users",
+                        "request": {
+                            "parameters": [{
+                                "name": "list",
+                                "type": "array",
+                                "parameter_type": "form",
+                                "description": "users List (JSON) [{'user_name': 'varchar(100)','password': 'varchar(255)'}]",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'},{user_id: 2, 'user_name': 'varchar(100)','password': 'varchar(255)'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "post",
+                            "url": "/users/create/list",
+                            "hasData": true,
+                            "data": ",{ params : {list: [{'user_name': 'varchar(100)','password': 'varchar(255)'},{'user_name': 'varchar(100)','password': 'varchar(255)'}]}}"
+                        }
+                    },
+                    {
+                        "route_name": "users_update_by_id",
+                        "route_url": "/users/update/{user_id}",
+                        "method": "PUT",
+                        "color": "info",
+                        "description": "Update users by user_id",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "user_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                {
+                    "name": "user_name",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                {
+                    "name": "password",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "put",
+                            "url": "/users/update/{user_id}",
+                            "hasData": true,
+                            "data": ",{ params : {'user_name': 'varchar(100)','password': 'varchar(255)'}}"
+                        }
+                    },
+                    {
+                        "route_name": "users_update_by_column",
+                        "route_url": "/users/update?column={column_name}&value={value}",
+                        "method": "PUT",
+                        "color": "info",
+                        "description": "Update users by any column ",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "user_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                {
+                    "name": "user_name",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                {
+                    "name": "password",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "users Name",
+                    "required": true
+                },
+                                {
+                                    "name": "column",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Column Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Value",
+                                    "required": true
+                                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "put",
+                            "url": "/users/update?column={column_name}&value={value}",
+                            "hasData": true,
+                            "data": ",{ params : {'user_name': 'varchar(100)','password': 'varchar(255)'}}"
+                        }
+                    },
+                    {
+                        "route_name": "users_delete_one",
+                        "route_url": "/users/delete/{user_id}",
+                        "method": "DELETE",
+                        "color": "danger",
+                        "description": "Delete one users",
+                        "request": {
+                            "parameters": [{
+                                "name": "user_id",
+                                "type": "integer",
+                                "parameter_type": "path",
+                                "description": "users ID",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{deleted_id: 1}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "delete",
+                            "url": "/users/delete/{user_id}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    }, {
+                        "route_name": "users_delete_list",
+                        "route_url": "/users/delete",
+                        "method": "DELETE",
+                        "color": "danger",
+                        "description": "Delete multiple users",
+                        "request": {
+                            "parameters": [{
+                                "name": "list",
+                                "type": "array",
+                                "parameter_type": "form",
+                                "description": "users List (JSON) [1,2,3]",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[1,2,3]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "delete",
+                            "url": "/users/delete",
+                            "hasData": true,
+                            "data": ",{ params : {list: [1,2,3]}}"
+                        }
+                    }
+                ]
+            },
+            {
+                "route_name": "visitors",
+                "route_url": "/visitors",
+                "route_key": "visitor_id",
+                "schema": {
+                    "type": "table",
+                    "properties": [
+                        
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "primary_key": true
+                },
+                {
+                    "name": "visitor_full_name",
+                    "type": "varchar",
+                    "primary_key": false
+                },
+                {
+                    "name": "visitor_phone",
+                    "type": "varchar",
+                    "primary_key": false
+                },
+                {
+                    "name": "visitor_code",
+                    "type": "varchar",
+                    "primary_key": false
+                }
+                    ]
+                },
+                "routes": [{
+                        "route_name": "visitors_list",
+                        "route_url": "/visitors/all",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "List all visitors",
+                        "request": {
+                            "parameters": []
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitors/all",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    }, {
+                        "route_name": "visitors_detail",
+                        "route_url": "/visitors/all/{visitor_id}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Get visitors detail",
+                        "request": {
+                            "parameters": [{
+                                "name": "visitor_id",
+                                "type": "integer",
+                                "parameter_type": "path",
+                                "description": "visitors ID",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitors/all/{visitor_id}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "visitors_filter",
+                        "route_url": "/visitors/filter?column={column_name}&value={value}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Filter visitors by single column",
+                        "request": {
+                            "parameters": [
+                                {
+                                    "name": "column_name",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Column Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Value",
+                                    "required": true
+                                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitors/filter?column={column_name}&value={value}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "visitors_report",
+                        "route_url": "/visitors/report?{column_name}={value}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Report visitors by single/multiple column using & operator",
+                        "request": {
+                            "parameters": [{
+                                "name": "column_name",
+                                "type": "string",
+                                "parameter_type": "query",
+                                "description": "Column Name",
+                                "required": false
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitors/report?{column_name}={value}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "visitors_create_one",
+                        "route_url": "/visitors/create",
+                        "method": "POST",
+                        "color": "warning",
+                        "description": "Create one visitors",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_full_name",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_phone",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_code",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "post",
+                            "url": "/visitors/create",
+                            "hasData": true,
+                            "data": ",{ params : {'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitors_create_list",
+                        "route_url": "/visitors/create/list",
+                        "method": "POST",
+                        "color": "warning",
+                        "description": "Create multiple visitors",
+                        "request": {
+                            "parameters": [{
+                                "name": "list",
+                                "type": "array",
+                                "parameter_type": "form",
+                                "description": "visitors List (JSON) [{'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}]",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'},{visitor_id: 2, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "post",
+                            "url": "/visitors/create/list",
+                            "hasData": true,
+                            "data": ",{ params : {list: [{'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'},{'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}]}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitors_update_by_id",
+                        "route_url": "/visitors/update/{visitor_id}",
+                        "method": "PUT",
+                        "color": "info",
+                        "description": "Update visitors by visitor_id",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_full_name",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_phone",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_code",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "put",
+                            "url": "/visitors/update/{visitor_id}",
+                            "hasData": true,
+                            "data": ",{ params : {'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitors_update_by_column",
+                        "route_url": "/visitors/update?column={column_name}&value={value}",
+                        "method": "PUT",
+                        "color": "info",
+                        "description": "Update visitors by any column ",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_full_name",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_phone",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_code",
+                    "type": "varchar",
+                    "parameter_type": "form",
+                    "description": "visitors Name",
+                    "required": true
+                },
+                                {
+                                    "name": "column",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Column Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Value",
+                                    "required": true
+                                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_id: 1, 'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "put",
+                            "url": "/visitors/update?column={column_name}&value={value}",
+                            "hasData": true,
+                            "data": ",{ params : {'visitor_full_name': 'varchar(255)','visitor_phone': 'varchar(25)','visitor_code': 'varchar(10)'}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitors_delete_one",
+                        "route_url": "/visitors/delete/{visitor_id}",
+                        "method": "DELETE",
+                        "color": "danger",
+                        "description": "Delete one visitors",
+                        "request": {
+                            "parameters": [{
+                                "name": "visitor_id",
+                                "type": "integer",
+                                "parameter_type": "path",
+                                "description": "visitors ID",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{deleted_id: 1}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "delete",
+                            "url": "/visitors/delete/{visitor_id}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    }, {
+                        "route_name": "visitors_delete_list",
+                        "route_url": "/visitors/delete",
+                        "method": "DELETE",
+                        "color": "danger",
+                        "description": "Delete multiple visitors",
+                        "request": {
+                            "parameters": [{
+                                "name": "list",
+                                "type": "array",
+                                "parameter_type": "form",
+                                "description": "visitors List (JSON) [1,2,3]",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[1,2,3]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "delete",
+                            "url": "/visitors/delete",
+                            "hasData": true,
+                            "data": ",{ params : {list: [1,2,3]}}"
+                        }
+                    }
+                ]
+            },
+            {
+                "route_name": "visitor_check_in",
+                "route_url": "/visitor_check_in",
+                "route_key": "visitor_check_in_id",
+                "schema": {
+                    "type": "table",
+                    "properties": [
+                        
+                {
+                    "name": "visitor_check_in_id",
+                    "type": "int",
+                    "primary_key": true
+                },
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "primary_key": false
+                },
+                {
+                    "name": "visitor_check_in_date_time",
+                    "type": "datetime",
+                    "primary_key": false
+                }
+                    ]
+                },
+                "routes": [{
+                        "route_name": "visitor_check_in_list",
+                        "route_url": "/visitor_check_in/all",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "List all visitor_check_in",
+                        "request": {
+                            "parameters": []
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitor_check_in/all",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    }, {
+                        "route_name": "visitor_check_in_detail",
+                        "route_url": "/visitor_check_in/all/{visitor_check_in_id}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Get visitor_check_in detail",
+                        "request": {
+                            "parameters": [{
+                                "name": "visitor_check_in_id",
+                                "type": "integer",
+                                "parameter_type": "path",
+                                "description": "visitor_check_in ID",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitor_check_in/all/{visitor_check_in_id}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_filter",
+                        "route_url": "/visitor_check_in/filter?column={column_name}&value={value}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Filter visitor_check_in by single column",
+                        "request": {
+                            "parameters": [
+                                {
+                                    "name": "column_name",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Column Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Value",
+                                    "required": true
+                                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitor_check_in/filter?column={column_name}&value={value}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_report",
+                        "route_url": "/visitor_check_in/report?{column_name}={value}",
+                        "method": "GET",
+                        "color": "success",
+                        "description": "Report visitor_check_in by single/multiple column using & operator",
+                        "request": {
+                            "parameters": [{
+                                "name": "column_name",
+                                "type": "string",
+                                "parameter_type": "query",
+                                "description": "Column Name",
+                                "required": false
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "get",
+                            "url": "/visitor_check_in/report?{column_name}={value}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_create_one",
+                        "route_url": "/visitor_check_in/create",
+                        "method": "POST",
+                        "color": "warning",
+                        "description": "Create one visitor_check_in",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "visitor_check_in_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_check_in_date_time",
+                    "type": "datetime",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "post",
+                            "url": "/visitor_check_in/create",
+                            "hasData": true,
+                            "data": ",{ params : {'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_create_list",
+                        "route_url": "/visitor_check_in/create/list",
+                        "method": "POST",
+                        "color": "warning",
+                        "description": "Create multiple visitor_check_in",
+                        "request": {
+                            "parameters": [{
+                                "name": "list",
+                                "type": "array",
+                                "parameter_type": "form",
+                                "description": "visitor_check_in List (JSON) [{'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'},{visitor_check_in_id: 2, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "post",
+                            "url": "/visitor_check_in/create/list",
+                            "hasData": true,
+                            "data": ",{ params : {list: [{'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'},{'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_update_by_id",
+                        "route_url": "/visitor_check_in/update/{visitor_check_in_id}",
+                        "method": "PUT",
+                        "color": "info",
+                        "description": "Update visitor_check_in by visitor_check_in_id",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "visitor_check_in_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_check_in_date_time",
+                    "type": "datetime",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "put",
+                            "url": "/visitor_check_in/update/{visitor_check_in_id}",
+                            "hasData": true,
+                            "data": ",{ params : {'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_update_by_column",
+                        "route_url": "/visitor_check_in/update?column={column_name}&value={value}",
+                        "method": "PUT",
+                        "color": "info",
+                        "description": "Update visitor_check_in by any column ",
+                        "request": {
+                            "parameters": [
+                                
+                {
+                    "name": "visitor_check_in_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_id",
+                    "type": "int",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                {
+                    "name": "visitor_check_in_date_time",
+                    "type": "datetime",
+                    "parameter_type": "form",
+                    "description": "visitor_check_in Name",
+                    "required": true
+                },
+                                {
+                                    "name": "column",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Column Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "string",
+                                    "parameter_type": "query",
+                                    "description": "Value",
+                                    "required": true
+                                }
+                            ]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "put",
+                            "url": "/visitor_check_in/update?column={column_name}&value={value}",
+                            "hasData": true,
+                            "data": ",{ params : {'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}}"
+                        }
+                    },
+                    {
+                        "route_name": "visitor_check_in_delete_one",
+                        "route_url": "/visitor_check_in/delete/{visitor_check_in_id}",
+                        "method": "DELETE",
+                        "color": "danger",
+                        "description": "Delete one visitor_check_in",
+                        "request": {
+                            "parameters": [{
+                                "name": "visitor_check_in_id",
+                                "type": "integer",
+                                "parameter_type": "path",
+                                "description": "visitor_check_in ID",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "{deleted_id: 1}"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "delete",
+                            "url": "/visitor_check_in/delete/{visitor_check_in_id}",
+                            "hasData": false,
+                            "data": ""
+                        }
+                    }, {
+                        "route_name": "visitor_check_in_delete_list",
+                        "route_url": "/visitor_check_in/delete",
+                        "method": "DELETE",
+                        "color": "danger",
+                        "description": "Delete multiple visitor_check_in",
+                        "request": {
+                            "parameters": [{
+                                "name": "list",
+                                "type": "array",
+                                "parameter_type": "form",
+                                "description": "visitor_check_in List (JSON) [1,2,3]",
+                                "required": true
+                            }]
+                        },
+                        "response": [{
+                                "code": 200,
+                                "description": "Successful operation",
+                                "result_type": "code",
+                                "result_code": "[1,2,3]"
+                            },
+                            {
+                                "code": 400,
+                                "description": "Bad Request",
+                                "result_type": "message",
+                                "result_code": "SQL Error Message"
+                            },
+                            {
+                                "code": 401,
+                                "description": "Validation",
+                                "result_type": "message",
+                                "result_code": "Validation Error Message"
+                            },
+                            {
+                                "code": 404,
+                                "description": "Not Found",
+                                "result_type": "message",
+                                "result_code": "Route Not Found"
+                            }
+                        ],
+                        "axios": {
+                            "method": "delete",
+                            "url": "/visitor_check_in/delete",
+                            "hasData": true,
+                            "data": ",{ params : {list: [1,2,3]}}"
+                        }
+                    }
+                ]
+            }]

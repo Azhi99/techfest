@@ -1,0 +1,159 @@
+
+        <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark.min.css">
+    <title>API Documentaion</title>
+    <style>
+        div.code {
+            white-space: pre-wrap!important;
+            text-align: left;
+        }
+        td.hljs-ln-code {
+	white-space: pre-wrap;
+}
+    </style>
+</head>
+
+<body class=" ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <br>
+            <h1>API Documentaion</h1>
+            <br>
+                <p>
+                    This is the API documentation for the API END-POINTS.
+                </p>
+                <p>
+                    import <a href="../../postman.json">this file</a> to postman and test all following end points.
+                </p>
+            </div>
+            <div class="col-12">
+            <h2>Setup</h2>
+            <p>
+            </p>
+            <pre>
+                <code class="language-js">
+                <div class="code">
+# path to your project folder
+> npm install
+> npm start
+            </div>
+            </code>
+            </pre>
+            <h2>Installed dependencies</h2>
+            <pre>
+                <code class="language-json">
+                <div class="code">
+"dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "knex": "^1.0.4",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
+},
+            </div>
+            </code>
+            </pre>
+            </div>
+            <div class="col-12">
+                <h2>Routes</h2>
+                <div class="row">
+                    
+                    <div class="col-xs-12 col-lg-4 col-xl-4">
+                        <div class="card   my-1" >
+                            <div class="bg-white card-header">
+                            
+                                <a class="btn btn-link" href="/documentation/users"><code >/users</code></a>
+                            
+                            </div>
+                            <div class="card-body text-truncate" style="height:100px">
+                            
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">user_id</code> <code class="">int</code>✅</h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">user_name</code> <code class="">varchar</code></h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">password</code> <code class="">varchar</code></h6>
+                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-lg-4 col-xl-4">
+                        <div class="card   my-1" >
+                            <div class="bg-white card-header">
+                            
+                                <a class="btn btn-link" href="/documentation/visitors"><code >/visitors</code></a>
+                            
+                            </div>
+                            <div class="card-body text-truncate" style="height:100px">
+                            
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_id</code> <code class="">int</code>✅</h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_full_name</code> <code class="">varchar</code></h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_phone</code> <code class="">varchar</code></h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_code</code> <code class="">varchar</code></h6>
+                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-lg-4 col-xl-4">
+                        <div class="card   my-1" >
+                            <div class="bg-white card-header">
+                            
+                                <a class="btn btn-link" href="/documentation/visitor_check_in"><code >/visitor_check_in</code></a>
+                            
+                            </div>
+                            <div class="card-body text-truncate" style="height:100px">
+                            
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_check_in_id</code> <code class="">int</code>✅</h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_id</code> <code class="">int</code></h6>
+                    
+                                
+                                                <h6 class="mx-3 text-truncate"><code class="text-secondary">visitor_check_in_date_time</code> <code class="">datetime</code></h6>
+                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
+        </div>
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script>
+        hljs.highlightAll();
+    </script>
+</body>
+
+</html>
+        

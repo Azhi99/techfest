@@ -1,0 +1,1165 @@
+
+        <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github.min.css">
+    <title>API Documentaion | /users Route</title>
+    <style>
+        div.code {
+            white-space: pre-wrap!important;
+            text-align: left;
+        }
+        td.hljs-ln-code {
+	white-space: pre-wrap;
+}
+    </style>
+</head>
+
+<body class=" ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <br>
+            <h1>API Documentaion</h1>
+            <br>
+            <br>
+                <p>
+                    This is the API documentation for the <code class="text-secondary">users</code> table. It contains the schema and route end points for the <code class="text-secondary">users</code> table.
+                </p>
+                <p>
+                <code class="text-secondary">users</code> end points is located at the following URL:<code class="text-secondary"> http://your-server-name/users</code>
+                </p>
+                <p>
+                media type:<code class="text-secondary">application/json</code>
+                </p>
+                <p>
+                HTTP methods: <code class="text-secondary">GET</code>, <code class="text-secondary">POST</code>, <code class="text-secondary">PUT</code>, and <code class="text-secondary">DELETE</code></p>
+            </div>
+            <div class="col-12">
+            schema
+            <ul>
+            <li>
+                    <a href="#schema">
+                        <code class="text-info">schema</code>
+                    </a>
+                </li>
+            </ul>
+            routes
+            <ul>
+            
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#users/all">
+                        <code class="text-info">/users/all</code>
+                    </a>
+                    <span style="color:grey"> # list all users</span>
+                </li>
+                
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#users/all/{user_id}">
+                        <code class="text-info">/users/all/{user_id}</code>
+                    </a>
+                    <span style="color:grey"> # get users detail</span>
+                </li>
+                
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#users/filter?column={column_name}&value={value}">
+                        <code class="text-info">/users/filter?column={column_name}&value={value}</code>
+                    </a>
+                    <span style="color:grey"> # filter users by single column</span>
+                </li>
+                
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#users/report?{column_name}={value}">
+                        <code class="text-info">/users/report?{column_name}={value}</code>
+                    </a>
+                    <span style="color:grey"> # report users by single/multiple column using & operator</span>
+                </li>
+                
+                <li>
+                <code class="text-warning">POST</code>
+                    <a class="text-info" href="#users/create">
+                        <code class="text-info">/users/create</code>
+                    </a>
+                    <span style="color:grey"> # create one users</span>
+                </li>
+                
+                <li>
+                <code class="text-warning">POST</code>
+                    <a class="text-info" href="#users/create/list">
+                        <code class="text-info">/users/create/list</code>
+                    </a>
+                    <span style="color:grey"> # create multiple users</span>
+                </li>
+                
+                <li>
+                <code class="text-info">PUT</code>
+                    <a class="text-info" href="#users/update/{user_id}">
+                        <code class="text-info">/users/update/{user_id}</code>
+                    </a>
+                    <span style="color:grey"> # update users by user_id</span>
+                </li>
+                
+                <li>
+                <code class="text-info">PUT</code>
+                    <a class="text-info" href="#users/update?column={column_name}&value={value}">
+                        <code class="text-info">/users/update?column={column_name}&value={value}</code>
+                    </a>
+                    <span style="color:grey"> # update users by any column </span>
+                </li>
+                
+                <li>
+                <code class="text-danger">DELETE</code>
+                    <a class="text-info" href="#users/delete/{user_id}">
+                        <code class="text-info">/users/delete/{user_id}</code>
+                    </a>
+                    <span style="color:grey"> # delete one users</span>
+                </li>
+                
+                <li>
+                <code class="text-danger">DELETE</code>
+                    <a class="text-info" href="#users/delete">
+                        <code class="text-info">/users/delete</code>
+                    </a>
+                    <span style="color:grey"> # delete multiple users</span>
+                </li>
+                
+                
+            </ul>
+            </div>
+            <div class="col-12">
+                <h3 id="schema">Schema</h3>
+                
+                    
+                            <h6 class="mx-3"><code class="text-secondary">- user_id</code> <code class="">int</code>✅</h6>
+
+            
+                            <h6 class="mx-3"><code class="text-secondary">- user_name</code> <code class="">varchar</code></h6>
+
+            
+                            <h6 class="mx-3"><code class="text-secondary">- password</code> <code class="">varchar</code></h6>
+
+            
+                   
+            </div>
+            <div class="col-12">
+                <h3>Routes</h3>
+                    
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/all"><code class="text-success">GET /users/all</code></h4>
+                        <span style="color:grey"> # list all users</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/users/all' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/all/{user_id}"><code class="text-success">GET /users/all/{user_id}</code></h4>
+                        <span style="color:grey"> # get users detail</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      integer
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # path
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/users/all/{user_id}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/filter?column={column_name}&value={value}"><code class="text-success">GET /users/filter?column={column_name}&value={value}</code></h4>
+                        <span style="color:grey"> # filter users by single column</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - column_name
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - value
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/users/filter?column={column_name}&value={value}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/report?{column_name}={value}"><code class="text-success">GET /users/report?{column_name}={value}</code></h4>
+                        <span style="color:grey"> # report users by single/multiple column using & operator</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - column_name
+                                      </code>
+                                      <span class="text-danger">
+                                      
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/users/report?{column_name}={value}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/create"><code class="text-warning">POST /users/create</code></h4>
+                        <span style="color:grey"> # create one users</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_name
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      varchar
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - password
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      varchar
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.post('/users/create' ,{ params : {'user_name': 'varchar(100)','password': 'varchar(255)'}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/create/list"><code class="text-warning">POST /users/create/list</code></h4>
+                        <span style="color:grey"> # create multiple users</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - list
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      array
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'},{user_id: 2, 'user_name': 'varchar(100)','password': 'varchar(255)'}]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.post('/users/create/list' ,{ params : {list: [{'user_name': 'varchar(100)','password': 'varchar(255)'},{'user_name': 'varchar(100)','password': 'varchar(255)'}]}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/update/{user_id}"><code class="text-info">PUT /users/update/{user_id}</code></h4>
+                        <span style="color:grey"> # update users by user_id</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_name
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      varchar
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - password
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      varchar
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.put('/users/update/{user_id}' ,{ params : {'user_name': 'varchar(100)','password': 'varchar(255)'}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/update?column={column_name}&value={value}"><code class="text-info">PUT /users/update?column={column_name}&value={value}</code></h4>
+                        <span style="color:grey"> # update users by any column </span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_name
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      varchar
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - password
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      varchar
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - column
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - value
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{user_id: 1, 'user_name': 'varchar(100)','password': 'varchar(255)'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.put('/users/update?column={column_name}&value={value}' ,{ params : {'user_name': 'varchar(100)','password': 'varchar(255)'}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/delete/{user_id}"><code class="text-danger">DELETE /users/delete/{user_id}</code></h4>
+                        <span style="color:grey"> # delete one users</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - user_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      integer
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # path
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{deleted_id: 1}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.delete('/users/delete/{user_id}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="users/delete"><code class="text-danger">DELETE /users/delete</code></h4>
+                        <span style="color:grey"> # delete multiple users</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - list
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      array
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[1,2,3]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.delete('/users/delete' ,{ params : {list: [1,2,3]}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+                    
+                        
+
+                    
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</body>
+
+</html>
+    

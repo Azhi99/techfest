@@ -1,0 +1,1165 @@
+
+        <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github.min.css">
+    <title>API Documentaion | /visitor_check_in Route</title>
+    <style>
+        div.code {
+            white-space: pre-wrap!important;
+            text-align: left;
+        }
+        td.hljs-ln-code {
+	white-space: pre-wrap;
+}
+    </style>
+</head>
+
+<body class=" ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <br>
+            <h1>API Documentaion</h1>
+            <br>
+            <br>
+                <p>
+                    This is the API documentation for the <code class="text-secondary">visitor_check_in</code> table. It contains the schema and route end points for the <code class="text-secondary">visitor_check_in</code> table.
+                </p>
+                <p>
+                <code class="text-secondary">visitor_check_in</code> end points is located at the following URL:<code class="text-secondary"> http://your-server-name/visitor_check_in</code>
+                </p>
+                <p>
+                media type:<code class="text-secondary">application/json</code>
+                </p>
+                <p>
+                HTTP methods: <code class="text-secondary">GET</code>, <code class="text-secondary">POST</code>, <code class="text-secondary">PUT</code>, and <code class="text-secondary">DELETE</code></p>
+            </div>
+            <div class="col-12">
+            schema
+            <ul>
+            <li>
+                    <a href="#schema">
+                        <code class="text-info">schema</code>
+                    </a>
+                </li>
+            </ul>
+            routes
+            <ul>
+            
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#visitor_check_in/all">
+                        <code class="text-info">/visitor_check_in/all</code>
+                    </a>
+                    <span style="color:grey"> # list all visitor_check_in</span>
+                </li>
+                
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#visitor_check_in/all/{visitor_check_in_id}">
+                        <code class="text-info">/visitor_check_in/all/{visitor_check_in_id}</code>
+                    </a>
+                    <span style="color:grey"> # get visitor_check_in detail</span>
+                </li>
+                
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#visitor_check_in/filter?column={column_name}&value={value}">
+                        <code class="text-info">/visitor_check_in/filter?column={column_name}&value={value}</code>
+                    </a>
+                    <span style="color:grey"> # filter visitor_check_in by single column</span>
+                </li>
+                
+                <li>
+                <code class="text-success">GET</code>
+                    <a class="text-info" href="#visitor_check_in/report?{column_name}={value}">
+                        <code class="text-info">/visitor_check_in/report?{column_name}={value}</code>
+                    </a>
+                    <span style="color:grey"> # report visitor_check_in by single/multiple column using & operator</span>
+                </li>
+                
+                <li>
+                <code class="text-warning">POST</code>
+                    <a class="text-info" href="#visitor_check_in/create">
+                        <code class="text-info">/visitor_check_in/create</code>
+                    </a>
+                    <span style="color:grey"> # create one visitor_check_in</span>
+                </li>
+                
+                <li>
+                <code class="text-warning">POST</code>
+                    <a class="text-info" href="#visitor_check_in/create/list">
+                        <code class="text-info">/visitor_check_in/create/list</code>
+                    </a>
+                    <span style="color:grey"> # create multiple visitor_check_in</span>
+                </li>
+                
+                <li>
+                <code class="text-info">PUT</code>
+                    <a class="text-info" href="#visitor_check_in/update/{visitor_check_in_id}">
+                        <code class="text-info">/visitor_check_in/update/{visitor_check_in_id}</code>
+                    </a>
+                    <span style="color:grey"> # update visitor_check_in by visitor_check_in_id</span>
+                </li>
+                
+                <li>
+                <code class="text-info">PUT</code>
+                    <a class="text-info" href="#visitor_check_in/update?column={column_name}&value={value}">
+                        <code class="text-info">/visitor_check_in/update?column={column_name}&value={value}</code>
+                    </a>
+                    <span style="color:grey"> # update visitor_check_in by any column </span>
+                </li>
+                
+                <li>
+                <code class="text-danger">DELETE</code>
+                    <a class="text-info" href="#visitor_check_in/delete/{visitor_check_in_id}">
+                        <code class="text-info">/visitor_check_in/delete/{visitor_check_in_id}</code>
+                    </a>
+                    <span style="color:grey"> # delete one visitor_check_in</span>
+                </li>
+                
+                <li>
+                <code class="text-danger">DELETE</code>
+                    <a class="text-info" href="#visitor_check_in/delete">
+                        <code class="text-info">/visitor_check_in/delete</code>
+                    </a>
+                    <span style="color:grey"> # delete multiple visitor_check_in</span>
+                </li>
+                
+                
+            </ul>
+            </div>
+            <div class="col-12">
+                <h3 id="schema">Schema</h3>
+                
+                    
+                            <h6 class="mx-3"><code class="text-secondary">- visitor_check_in_id</code> <code class="">int</code>✅</h6>
+
+            
+                            <h6 class="mx-3"><code class="text-secondary">- visitor_id</code> <code class="">int</code></h6>
+
+            
+                            <h6 class="mx-3"><code class="text-secondary">- visitor_check_in_date_time</code> <code class="">datetime</code></h6>
+
+            
+                   
+            </div>
+            <div class="col-12">
+                <h3>Routes</h3>
+                    
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/all"><code class="text-success">GET /visitor_check_in/all</code></h4>
+                        <span style="color:grey"> # list all visitor_check_in</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/visitor_check_in/all' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/all/{visitor_check_in_id}"><code class="text-success">GET /visitor_check_in/all/{visitor_check_in_id}</code></h4>
+                        <span style="color:grey"> # get visitor_check_in detail</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      integer
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # path
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/visitor_check_in/all/{visitor_check_in_id}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/filter?column={column_name}&value={value}"><code class="text-success">GET /visitor_check_in/filter?column={column_name}&value={value}</code></h4>
+                        <span style="color:grey"> # filter visitor_check_in by single column</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - column_name
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - value
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/visitor_check_in/filter?column={column_name}&value={value}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/report?{column_name}={value}"><code class="text-success">GET /visitor_check_in/report?{column_name}={value}</code></h4>
+                        <span style="color:grey"> # report visitor_check_in by single/multiple column using & operator</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - column_name
+                                      </code>
+                                      <span class="text-danger">
+                                      
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.get('/visitor_check_in/report?{column_name}={value}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/create"><code class="text-warning">POST /visitor_check_in/create</code></h4>
+                        <span style="color:grey"> # create one visitor_check_in</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_date_time
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      datetime
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.post('/visitor_check_in/create' ,{ params : {'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/create/list"><code class="text-warning">POST /visitor_check_in/create/list</code></h4>
+                        <span style="color:grey"> # create multiple visitor_check_in</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - list
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      array
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'},{visitor_check_in_id: 2, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.post('/visitor_check_in/create/list' ,{ params : {list: [{'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'},{'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}]}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/update/{visitor_check_in_id}"><code class="text-info">PUT /visitor_check_in/update/{visitor_check_in_id}</code></h4>
+                        <span style="color:grey"> # update visitor_check_in by visitor_check_in_id</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_date_time
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      datetime
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.put('/visitor_check_in/update/{visitor_check_in_id}' ,{ params : {'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/update?column={column_name}&value={value}"><code class="text-info">PUT /visitor_check_in/update?column={column_name}&value={value}</code></h4>
+                        <span style="color:grey"> # update visitor_check_in by any column </span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      int
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_date_time
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      datetime
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - column
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - value
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      string
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # query
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{visitor_check_in_id: 1, 'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.put('/visitor_check_in/update?column={column_name}&value={value}' ,{ params : {'visitor_id': 'int(11)','visitor_check_in_date_time': 'datetime'}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/delete/{visitor_check_in_id}"><code class="text-danger">DELETE /visitor_check_in/delete/{visitor_check_in_id}</code></h4>
+                        <span style="color:grey"> # delete one visitor_check_in</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - visitor_check_in_id
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      integer
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # path
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+{deleted_id: 1}
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.delete('/visitor_check_in/delete/{visitor_check_in_id}' ).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+            <div class="card  my-2">
+                        <div class="bg-white card-header">
+                        <h4 id="visitor_check_in/delete"><code class="text-danger">DELETE /visitor_check_in/delete</code></h4>
+                        <span style="color:grey"> # delete multiple visitor_check_in</span>
+                        </div>
+                        <div class="card-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <h5>Request</h5>
+                            
+                                
+                                      <h6>
+                                      
+                                      <code class="text-secondary">
+                                        - list
+                                      </code>
+                                      <span class="text-danger">
+                                      *
+                                      </span>
+                                      array
+                                      
+                                      
+                                      <code style="color:grey">
+                                      # form
+                                      </code>
+                                      
+                                      </h6>
+                                      
+                                    
+                                    <hr/>
+                                    <h5>Response</h5>
+                                    
+                                      
+                                            <span>Status 200</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # successful operation</span>
+                                            <pre><code class="language-json code">
+[1,2,3]
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 400</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # bad request</span>
+                                            <pre><code class="language-json code">
+SQL Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 401</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # validation</span>
+                                            <pre><code class="language-json code">
+Validation Error Message
+                                              </code></pre>
+                                            </p>
+                                            
+                                            <span>Status 404</span>
+                                            <p class="card-text">
+                                            <span style="color:grey"> # not found</span>
+                                            <pre><code class="language-json code">
+Route Not Found
+                                              </code></pre>
+                                            </p>
+                                            
+                                       
+            </div>
+            <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <pre style="height: 100%;white-space: pre-wrap!important;"><code style="height: 100%;white-space: pre-wrap!important;" class="language-js code">
+// axios example
+axios.delete('/visitor_check_in/delete' ,{ params : {list: [1,2,3]}}).then((response) =>{
+    // handle success
+    console.log(response.data);
+}).catch((error) =>{
+    console.log(error);
+});
+                </code></pre></div>
+            </div>
+            </div>
+                        
+                             </div>
+                                        </div>
+
+
+            
+                    
+                        
+
+                    
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</body>
+
+</html>
+    
