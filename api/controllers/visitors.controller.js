@@ -1,5 +1,6 @@
 
 const Visitors = require('../models/visitors.model')
+const VisitorsCheckIn = require('../models/visitors_check_in.model')
 const validationForm = require('../validations/visitors.validation')
         
 class VisitorsController {
@@ -65,6 +66,26 @@ class VisitorsController {
             } else {
                 Visitors.createOne(data).then(data => {
                     res.status(200).json({new_data : data})
+                }).catch(err => {
+                    res.status(400).json(err)
+                })
+            }
+        }
+    }
+    createOneAndCheck = () => {
+        return (req, res, next) => {
+            const data_visitor = req.body.visitor
+            const data_check_in = req.body.check_in
+            const validation = validationForm(data_visitor)
+            if (validation.error) {
+                res.status(401).json({
+                    message: validation.error.details[0].message
+                })
+            } else {
+                Visitors.createOne(data_visitor).then(data => {
+                    VisitorsCheckIn.createOne(data_check_in).then(() => {
+                        res.status(200).json({new_data : data})
+                    })
                 }).catch(err => {
                     res.status(400).json(err)
                 })
