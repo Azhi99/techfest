@@ -1,6 +1,6 @@
 
 const Visitors = require('../models/visitors.model')
-const VisitorsCheckIn = require('../models/visitors_check_in.model')
+const VisitorsCheckIn = require('../models/visitor_check_in.model')
 const validationForm = require('../validations/visitors.validation')
         
 class VisitorsController {
