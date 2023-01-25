@@ -153,10 +153,12 @@
             },
             addVisitorAndCheck() {
                 this.loading_btn = true;
+                var d = new Date();
+                d.setHours(d.getHours() + 3)
                 requests.createVisitorsAndCheck({
                     visitor: this.visitors,
                     check_in: {
-                        visitor_check_in_date_time: new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Baghdad"})),
+                        visitor_check_in_date_time: d,
                     }
                 }).then(r => {
                     this.visitors = {}
