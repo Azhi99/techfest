@@ -5,16 +5,16 @@
             <v-container v-else class="my-2">
                 <form @submit.prevent="addVisitors" autocomplete="off">
                     <div style="width: 50%" class="mx-auto">
-                        
-                        <v-text-field v-model="visitors.visitor_code" type="text" :label="$store.getters.language.data.visitors.visitor_code" dense
-                            class="mx-1"  filled required>
+                    
+                        <v-text-field v-model="visitors.visitor_full_name" type="text" :label="$store.getters.language.data.visitors.visitor_full_name" dense
+                            class="mx-1" autofocus  filled required>
                         </v-text-field>
-
                         <v-text-field v-model="visitors.visitor_phone" type="text" :label="$store.getters.language.data.visitors.visitor_phone" dense
                             class="mx-1"  filled required>
                         </v-text-field>
-                    
-                        <v-text-field v-model="visitors.visitor_full_name" type="text" :label="$store.getters.language.data.visitors.visitor_full_name" dense
+                        <v-autocomplete filled dense :label="$store.getters.language.data.cities.city_name" :items="cities" item-text="city_name" item-value="city_id" v-model="visitors.city_id"></v-autocomplete>
+                        
+                        <v-text-field v-model="visitors.visitor_code" type="text" :label="$store.getters.language.data.visitors.visitor_code" dense
                             class="mx-1"  filled required>
                         </v-text-field>
                 
@@ -72,10 +72,13 @@
 </template>
 <script>
     import requests from './../../requests/visitors.request.js'
+    import cities_request from './../../requests/cities.request.js'
     export default {
         data() {
             return {
-                visitors: {},
+                visitors: {
+                    city_id: 1
+                },
                 search: '',
                 loading : true,
                 loading_btn:false,
@@ -86,35 +89,34 @@
                     color: ''
                 },
                 rows:[],
+                cities: [],
                 selected_visitors : {},
                 delete_dialog: false,
                 headers: [
-
-                    
-                        { 
-                            text: this.$store.getters.language.data.visitors.visitor_full_name,
-                            align: 'start',
-                            sortable: true,
-                            value: 'visitor_full_name',
-                        },
-                        { 
-                            text: this.$store.getters.language.data.visitors.visitor_phone,
-                            align: 'start',
-                            sortable: true,
-                            value: 'visitor_phone',
-                        },
-                        { 
-                            text: this.$store.getters.language.data.visitors.visitor_code,
-                            align: 'start',
-                            sortable: true,
-                            value: 'visitor_code',
-                        },   
-                        {
-                            text: this.$store.getters.language.data.actions,
-                            align: 'start',
-                            sortable: true,
-                            value: 'visitor_id',
-                        }
+                    { 
+                        text: this.$store.getters.language.data.visitors.visitor_full_name,
+                        align: 'start',
+                        sortable: true,
+                        value: 'visitor_full_name',
+                    },
+                    { 
+                        text: this.$store.getters.language.data.visitors.visitor_phone,
+                        align: 'start',
+                        sortable: true,
+                        value: 'visitor_phone',
+                    },
+                    { 
+                        text: this.$store.getters.language.data.visitors.visitor_code,
+                        align: 'start',
+                        sortable: true,
+                        value: 'visitor_code',
+                    },   
+                    {
+                        text: this.$store.getters.language.data.actions,
+                        align: 'start',
+                        sortable: true,
+                        value: 'visitor_id',
+                    }
                 ],
             }
         },
@@ -124,12 +126,15 @@
         },
         mounted(){
             this.readVisitors();
+            this.readCities();
         },
         methods: {
             addVisitors() {
                 this.loading_btn = true
                 requests.createVisitors(this.visitors).then(r => {
-                        this.visitors = {}
+                        this.visitors = {
+                            city_id: 1
+                        }
                         this.rows.push(
                             r.data.new_data
                         )
@@ -247,6 +252,20 @@
                 })
                 .finally(() => {
                     this.loading = false
+                })
+            },
+            readCities() {
+                cities_request.getAllCities().then(r => {
+                    if (r.status == 200) {
+                        this.cities = r.data.rows
+                    }
+                })
+                .catch(e => {
+                    this.snackbar = {
+                        value: true,
+                        text: 'Fail to read Visitors',
+                        color: 'error'
+                    }
                 })
             },
             selectVisitors(i) {

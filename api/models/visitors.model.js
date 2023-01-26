@@ -1,9 +1,10 @@
 
 const db = require('../connection')
 const table_name = 'visitors'
+const view_name = 'visitors_view'
 class Visitors {
     async getAll() {
-        return await db.select("*").table(table_name)
+        return await db.select("*").table(view_name)
     }
     async report(columns) {
         let query = "";
@@ -20,7 +21,7 @@ class Visitors {
             query += ` AND visitor_code = '${columns.visitor_code}'`
         }
             
-        return await db.raw(`SELECT * FROM ${table_name} WHERE 1=1 ${query}`).then(data => {
+        return await db.raw(`SELECT * FROM ${view_name} WHERE 1=1 ${query}`).then(data => {
             return data[0]
         })
     }
@@ -28,7 +29,7 @@ class Visitors {
         return await db.select("*").table(table_name).where('visitor_id', id)
     }
     async getByColumn(column, value) {
-        return await db.select("*").table(table_name).where(column, value)
+        return await db.select("*").table(view_name).where(column, value)
     }
     async createList(data) {
         const insert = await db(table_name).insert(data)
@@ -36,7 +37,7 @@ class Visitors {
     }
     async createOne(data) {
         const insert = await db(table_name).insert(data)
-        const insertedData = await db.select("*").table(table_name).where('visitor_id', insert[0])
+        const insertedData = await db.select("*").table(view_name).where('visitor_id', insert[0])
             .then(data => {
                 return data
             })
@@ -46,7 +47,7 @@ class Visitors {
         const update = await db(table_name)
             .where('visitor_id', id)
             .update(data).then(async () => {
-                return await db.select("*").table(table_name).where('visitor_id', id)
+                return await db.select("*").table(view_name).where('visitor_id', id)
             })
 
             return update[0] ? update[0] : null
@@ -61,7 +62,7 @@ class Visitors {
     async updateByColumn(data, column, value) {
         const updatedData = await db(table_name).where(column, value).update(data)
         .then(async (_) => {
-            return await db.select("*").table(table_name).where(column, value)
+            return await db.select("*").table(view_name).where(column, value)
         })
         return updatedData
     }

@@ -9,14 +9,11 @@ export default new Vuex.Store({
     state: {
         languages: languages,
         language: languages[0],
-        
         users_list: [],
-        
         visitors_list: [],
-        
+        cities_list: [],
         visitor_check_in_list: [],
         isLoggedIn: false,
-        
     },
     getters: {
         language: state => state.language,
@@ -27,6 +24,7 @@ export default new Vuex.Store({
         visitors_list: state => state.visitors_list,
         
         visitor_check_in_list: state => state.visitor_check_in_list,
+        cities_list: state => state.cities_list,
         
     },
     mutations: {
@@ -44,6 +42,10 @@ export default new Vuex.Store({
         
         setVisitorCheckInList(state, visitor_check_in_list) {
             state.visitor_check_in_list = visitor_check_in_list
+        },
+
+        setCitiesList(state, cities_list) {
+            state.cities_list = cities_list
         },
         
     },

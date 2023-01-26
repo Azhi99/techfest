@@ -13,7 +13,6 @@ const routes = [
             title : 'Home'
         }
     },
-    
     {
         path: '/users-list',
         name: 'ListUsers',
@@ -23,7 +22,7 @@ const routes = [
             title : 'Users List'
         }
     },
-        {
+    {
         path: '/users-list/:id',
         name: 'ViewUsers',
         component: () => import('./../views/Users/Edit.vue'),
@@ -75,6 +74,24 @@ const routes = [
         meta:{
             auth : true,
             title : 'Visitor list'
+        }
+    },
+    {
+        path: '/cities-list',
+        name: 'ListCities',
+        component: () => import('./../views/Cities/List.vue'),
+        meta:{
+            auth : true,
+            title : 'Cities List'
+        }
+    },
+        {
+        path: '/cities-list/:id',
+        name: 'ViewCities',
+        component: () => import('./../views/Cities/Edit.vue'),
+        meta:{
+            auth : true,
+            title : 'Cities Edit'
         }
     },
     {

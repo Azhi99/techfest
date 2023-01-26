@@ -6,11 +6,11 @@
             <v-btn icon="" to="/">
                 <v-icon>mdi-home</v-icon>
             </v-btn>
-            <v-app-bar-title>{{$store.getters.language.app_name}}</v-app-bar-title>
+            <!-- <v-app-bar-title>{{$store.getters.language.app_name}}</v-app-bar-title> -->
             <v-spacer></v-spacer>
             <v-btn color="error" icon @click="logout()"> <v-icon> mdi-logout </v-icon> </v-btn>
         </v-app-bar>
-        <v-navigation-drawer v-model="drawer" app :right="$store.getters.language.rtl">
+        <v-navigation-drawer v-model="drawer" app :right="$store.getters.language.rtl" width="220">
             <template v-slot:prepend>
                 <v-list-item>
                     <v-list-item-content>
@@ -43,26 +43,28 @@ export default {
         },
         navigation_links() {
             return [
-                
-                    {
-                        path : '/users-list',
-                        title : 'Users',
-                    },
-            
-                    {
-                        path : '/visitors-list',
-                        title : 'Visitors',
-                    },
-            
-                    {
-                        path : '/visitor_check_in-list',
-                        title : 'Visitor Check In',
-                    },
-                    {
-                        path : '/visitor_list',
-                        title : 'Visitor List',
-                    },
-            
+                {
+                    path : '/users-list',
+                    title : 'Users',
+                },
+        
+                {
+                    path : '/visitors-list',
+                    title : 'Visitors',
+                },
+        
+                {
+                    path : '/visitor_check_in-list',
+                    title : 'Visitor Check In',
+                },
+                {
+                    path : '/visitor_list',
+                    title : 'Visitor List',
+                },
+                {
+                    path : '/cities-list',
+                    title : 'Cities',
+                },
             ]
         },
     },

@@ -1,11 +1,11 @@
-const VisitorCheckIn = require('../models/visitor_check_in.model')
-const Visitors = require('../models/visitors.model')
-const validationForm = require('../validations/visitor_check_in.validation')
+
+const Cities = require('../models/cities.model')
+const validationForm = require('../validations/cities.validation')
         
-class VisitorCheckInController {
+class CitiesController {
     getAll = () => {
         return (req, res, next) => {
-            VisitorCheckIn.getAll().then(data => {
+            Cities.getAll().then(data => {
                 res.status(200).json({
                     rows : data
                 })
@@ -16,7 +16,7 @@ class VisitorCheckInController {
     }
     report = () => {
         return (req, res, next) => {
-            VisitorCheckIn.report(req.query).then(data => {
+            Cities.report(req.query).then(data => {
                 res.status(200).json(data)
             }).catch(err => {
                 res.status(400).json(err)
@@ -31,7 +31,7 @@ class VisitorCheckInController {
                     message: 'id is required'
                 })
             }
-            VisitorCheckIn.getById(id).then(data => {
+            Cities.getById(id).then(data => {
                 res.status(200).json(data[0] ? {row : data[0]} : null)
             }).catch(err => {
                 res.status(400).json(err)
@@ -47,7 +47,7 @@ class VisitorCheckInController {
                     message: 'validation error'
                 })
             }
-            VisitorCheckIn.getByColumn(column, value).then(data => {
+            Cities.getByColumn(column, value).then(data => {
                 res.status(200).json({rows : data})
             }).catch(err => {
                 res.status(400).json(err)
@@ -63,37 +63,11 @@ class VisitorCheckInController {
                     message: validation.error.details[0].message
                 })
             } else {
-                VisitorCheckIn.createOne(data).then(data => {
+                Cities.createOne(data).then(data => {
                     res.status(200).json({new_data : data})
                 }).catch(err => {
                     res.status(400).json(err)
                 })
-            }
-        }
-    }
-    createByVisitorCode = () => {
-        return async (req, res, next) => {
-            const data = req.body
-            console.log(data);
-            if (!data.visitor_code) {
-                res.status(401).json({
-                    message: 'Invalid visitor code'
-                })
-            } else {
-                const [visitor] = await Visitors.getByColumn('visitor_code', data.visitor_code)
-                if (!visitor) {
-                    res.status(401).json({
-                        message: 'Visitor code not found'
-                    })
-                } else {
-                    data.visitor_id = visitor.visitor_id
-                    delete data.visitor_code;
-                    VisitorCheckIn.createOne(data).then(data => {
-                        res.status(200).json({new_data : data})
-                    }).catch(err => {
-                        res.status(400).json(err)
-                    })
-                }
             }
         }
     }
@@ -112,7 +86,7 @@ class VisitorCheckInController {
                     message: validation.error.details[0].message
                 })
             } else {
-                VisitorCheckIn.updateByID(data, id).then(data => {
+                Cities.updateByID(data, id).then(data => {
                     res.status(200).json({new_data : data})
                 }).catch(err => {
                     res.status(400).json(err)
@@ -133,7 +107,7 @@ class VisitorCheckInController {
                 if (req.query.column || req.query.value) {
                     const column = req.query.column
                     const value = req.query.value
-                    VisitorCheckIn.updateByColumn(data, column, value).then(data => {
+                    Cities.updateByColumn(data, column, value).then(data => {
                         res.status(200).json({new_data : data})
                     }).catch(err => {
                         res.status(400).json(err)
@@ -155,7 +129,7 @@ class VisitorCheckInController {
                     message: 'id is required'
                 })
             }
-            VisitorCheckIn.deleteByID(id)
+            Cities.deleteByID(id)
                 .then(data => {
                     if (data == 1) {
                         res.status(200).json({
@@ -186,7 +160,7 @@ class VisitorCheckInController {
                     list.push(element)
                 }
             }
-            VisitorCheckIn.createList(list).then(data => {
+            Cities.createList(list).then(data => {
                 res.status(200).json({rows : data})
             }).catch(err => {
                 res.status(400).json(err)
@@ -197,7 +171,7 @@ class VisitorCheckInController {
         return (req, res, next) => {
             const body = req.body
             if (body.list && body.list.length > 0) {
-                VisitorCheckIn.deleteList(body.list)
+                Cities.deleteList(body.list)
                     .then(data => {
                         if (data == 1) {
                             res.status(200).json({
@@ -223,4 +197,4 @@ class VisitorCheckInController {
         }
     }
 }
-module.exports = new VisitorCheckInController()
+module.exports = new CitiesController()

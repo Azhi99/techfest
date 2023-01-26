@@ -8,10 +8,9 @@ const bodyParser = require('body-parser')
 const app = express()
 
 const users = require('./routes/users.route')
-
 const visitors = require('./routes/visitors.route')
-
 const visitor_check_in = require('./routes/visitor_check_in.route')
+const cities = require('./routes/cities.route')
 
 app.use(morgan('dev'))
 
@@ -45,6 +44,7 @@ app.get('/documentation/visitor_check_in',(req,res,next)=>{
 app.use('/users',users)
 app.use('/visitors',visitors)
 app.use('/visitor_check_in',visitor_check_in)
+app.use('/cities',cities)
 
 app.post('/verifyToken', (req, res, next) => {
     const token = req.body.token
