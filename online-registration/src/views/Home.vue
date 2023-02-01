@@ -9,11 +9,16 @@
             <v-btn block color="primary" :loading="loading_register" @click="register()"> Register </v-btn>
         </v-form>
     </div>
+    <v-snackbar v-model="snackbar.value" :color="snackbar.color">
+        {{snackbar.text}}
+    </v-snackbar>
   </div>
 </template>
 
 <script>
     import axios from 'axios'
+    if(process.env.NODE_ENV === 'development') axios.defaults.baseURL = 'http://localhost:5000/'
+    else axios.defaults.baseURL = 'https://techfest2023.com/api'
     export default {
         name: 'Home',
         data() {
@@ -26,11 +31,16 @@
                     required: [value => !!value || 'Required.'],
                     min: [v => (v && v.length >= 11) || 'Min 11 digits'],
                 },
-                loading_register: false
+                loading_register: false,
+                snackbar: {
+                    value: false,
+                    text: '',
+                    color: ''
+                },
             }
         },
         mounted() {
-            axios.get('http://localhost:5000/cities/all')
+            axios.get('cities/all')
                 .then(res => {
                     this.cities = res.data.rows
                     this.city_id = 1
@@ -42,7 +52,30 @@
         methods: {
             register() {
                 if(this.$refs.formRegister.validate()) {
-                    
+                    this.loading_register = true
+                    axios.post('visitors/create', {
+                        visitor_full_name: this.fullname,
+                        visitor_phone: this.phone,
+                        visitor_code: null,
+                        city_id: this.city_id,
+                    }).then((r) => {
+                        this.snackbar = {
+                            value: true,
+                            text: 'Register success',
+                            color: 'success'
+                        }
+                        this.fullname = ''
+                        this.phone = ''
+                        this.city_id = 1
+                    }).catch((err) => {
+                        this.snackbar = {
+                            value: true,
+                            text: err.response.data.message,
+                            color: 'error'
+                        }
+                    }).finally(() => {
+                        this.loading_register = false
+                    })
                 } else {
                     
                 }

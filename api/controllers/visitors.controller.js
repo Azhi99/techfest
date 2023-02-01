@@ -67,7 +67,13 @@ class VisitorsController {
                 Visitors.createOne(data).then(data => {
                     res.status(200).json({new_data : data})
                 }).catch(err => {
-                    res.status(400).json(err)
+                    if(err.errno == 1062) {
+                        res.status(400).json({
+                            message: 'Phone Number already exists'
+                        })
+                    } else {
+                        res.status(400).json(err)
+                    }
                 })
             }
         }
