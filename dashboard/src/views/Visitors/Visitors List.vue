@@ -5,7 +5,7 @@
                 <v-card>
                     <v-card-text>
                         <v-text-field label="Search" v-model="search"></v-text-field>
-                        <v-data-table :headers="headers"  show-select v-model="selected_rows"  :search="search" :items="rows" class="elevation-0"
+                        <v-data-table :headers="headers" show-select v-model="selected_rows"  :search="search" :items="rows" class="elevation-0"
                             item-key="visitor_id">
                             <template v-slot:[`item.visitor_id`]="{ item }">
                                 <div>
@@ -16,6 +16,12 @@
                                         <v-icon> mdi-delete-outline </v-icon>
                                     </v-btn>
                                 </div>
+                            </template>
+                            <template v-slot:[`footer.prepend`]>
+                                <export-excel
+                                    :data="rows">
+                                    <v-btn small color="success"> Download Excel <v-icon class="ms-2"> mdi-microsoft-excel </v-icon> </v-btn>
+                                </export-excel>
                             </template>
                         </v-data-table>
                     </v-card-text>

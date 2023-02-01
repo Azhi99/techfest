@@ -2,8 +2,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import excel from 'vue-excel-export'
 import store from './store'
 import vuetify from './plugins/vuetify'
+ 
+Vue.use(excel)
 
 
 Vue.config.productionTip = false
