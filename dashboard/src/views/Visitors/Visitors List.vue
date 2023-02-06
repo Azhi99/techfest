@@ -9,8 +9,8 @@
                             item-key="visitor_id">
                             <template v-slot:[`item.visitor_id`]="{ item }">
                                 <div>
-                                    <v-btn icon :to="'/visitors-list/'+item.visitor_id"  color="teal" class="mx-1">
-                                    <v-icon> mdi-pencil-outline </v-icon>
+                                    <v-btn icon :to="'/visitors-list/'+item.visitor_id"  color="teal" class="mx-1" v-if="$route.query.key && $route.query.key == 'tech_rzh23'">
+                                        <v-icon> mdi-pencil-outline </v-icon>
                                     </v-btn>
                                     <v-btn color="error" icon class="mx-1" @click="selectVisitors(item)" >
                                         <v-icon> mdi-delete-outline </v-icon>
@@ -18,7 +18,7 @@
                                 </div>
                             </template>
                             <template v-slot:[`footer.prepend`]>
-                                <export-excel
+                                <export-excel v-if="$route.query.key && $route.query.key == 'tech_rzh23'"
                                     :data="rows">
                                     <v-btn small color="success"> Download Excel <v-icon class="ms-2"> mdi-microsoft-excel </v-icon> </v-btn>
                                 </export-excel>
@@ -74,47 +74,81 @@ export default {
                 color: ''
             },
             headers: [
-                { 
-                    text: this.$store.getters.language.data.visitors.visitor_full_name,
-                    align: 'start',
-                    sortable: true,
-                    value: 'visitor_full_name',
-                },
-                { 
-                    text: this.$store.getters.language.data.visitors.visitor_phone,
-                    align: 'start',
-                    sortable: true,
-                    value: 'visitor_phone',
-                },
-                { 
-                    text: this.$store.getters.language.data.cities.city_name,
-                    align: 'start',
-                    sortable: true,
-                    value: 'city_name',
-                },
-                { 
-                    text: this.$store.getters.language.data.visitors.visitor_code,
-                    align: 'start',
-                    sortable: true,
-                    value: 'visitor_code',
-                }, 
-                { 
-                    text: this.$store.getters.language.data.users.user_name,
-                    align: 'start',
-                    sortable: true,
-                    value: 'user_name',
-                },     
-                {
-                    text: this.$store.getters.language.data.actions,
-                    align: 'start',
-                    sortable: true,
-                    value: 'visitor_id',
-                }
+                
             ],
         }
     },
     mounted() {
         this.readVisitors();
+        if(this.$route.query.key && this.$route.query.key == 'tech_rzh23') {
+            this.headers = [{ 
+                text: this.$store.getters.language.data.visitors.visitor_full_name,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_full_name',
+            },
+            { 
+                text: this.$store.getters.language.data.visitors.visitor_phone,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_phone',
+            },
+            { 
+                text: this.$store.getters.language.data.cities.city_name,
+                align: 'start',
+                sortable: true,
+                value: 'city_name',
+            },
+            { 
+                text: this.$store.getters.language.data.visitors.visitor_code,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_code',
+            }, 
+            { 
+                text: this.$store.getters.language.data.users.user_name,
+                align: 'start',
+                sortable: true,
+                value: 'user_name',
+            },     
+            {
+                text: this.$store.getters.language.data.actions,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_id',
+            }]
+        } else {
+            this.headers = [{ 
+                text: this.$store.getters.language.data.visitors.visitor_full_name,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_full_name',
+            },
+            { 
+                text: this.$store.getters.language.data.cities.city_name,
+                align: 'start',
+                sortable: true,
+                value: 'city_name',
+            },
+            { 
+                text: this.$store.getters.language.data.visitors.visitor_code,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_code',
+            }, 
+            { 
+                text: this.$store.getters.language.data.users.user_name,
+                align: 'start',
+                sortable: true,
+                value: 'user_name',
+            },     
+            {
+                text: this.$store.getters.language.data.actions,
+                align: 'start',
+                sortable: true,
+                value: 'visitor_id',
+            }]
+        }
     },
 
     methods: {
