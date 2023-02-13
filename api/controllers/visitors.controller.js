@@ -64,6 +64,7 @@ class VisitorsController {
                     message: validation.error.details[0].message
                 })
             } else {
+                data.user_id = req.user.user_id
                 Visitors.createOne(data).then(data => {
                     res.status(200).json({new_data : data})
                 }).catch(err => {

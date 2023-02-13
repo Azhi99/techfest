@@ -36,14 +36,8 @@ class Visitors {
         return insert
     }
     async createOne(data) {
-        const insert = await db(table_name).insert(data)
-        if(!data.visitor_code) {
-            const code = Number(insert[0]) + 50000
-            await db(table_name).where('visitor_id', insert[0]).update({
-                visitor_code: code
-            })
-        }
-        const insertedData = await db.select("*").table(view_name).where('visitor_id', insert[0])
+        
+        const insertedData = await db(table_name).insert(data)
             .then(data => {
                 return data
             })

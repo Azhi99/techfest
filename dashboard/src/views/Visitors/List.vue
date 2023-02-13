@@ -12,42 +12,17 @@
                         <v-text-field v-model="visitors.visitor_phone" type="text" :label="$store.getters.language.data.visitors.visitor_phone" dense
                             class="mx-1"  filled required>
                         </v-text-field>
-                        <v-autocomplete filled dense :label="$store.getters.language.data.cities.city_name" :items="cities" item-text="city_name" item-value="city_id" v-model="visitors.city_id"></v-autocomplete>
+                        <v-autocomplete class="mx-1" filled dense :label="$store.getters.language.data.cities.city_name" :items="cities" item-text="city_name" item-value="city_id" v-model="visitors.city_id"></v-autocomplete>
                         
-                        <v-text-field v-model="visitors.visitor_code" type="text" :label="$store.getters.language.data.visitors.visitor_code" dense
+                        <!-- <v-text-field v-model="visitors.visitor_code" type="text" :label="$store.getters.language.data.visitors.visitor_code" dense
                             class="mx-1"  filled required>
-                        </v-text-field>
+                        </v-text-field> -->
                 
                         <v-btn  color="primary" block :loading="loading_btn" type="submit" x-large>{{$store.getters.language.data.visitors.add_btn}}</v-btn>
                         <v-btn  color="primary" class="mt-2" block :loading="loading_btn" @click="addVisitorAndCheck()"  x-large>{{$store.getters.language.data.visitors.add_and_check_btn}}</v-btn>
                     </div>
                 </form>
-<v-layout row wrap mt-5>
-    <!-- <v-flex xs12>
-        <v-card>
-            <v-card-text>
-                <v-data-table :headers="headers"  show-select v-model="selected_rows"    :search="search" :items="rows" class="elevation-0"
-                    item-key="visitor_id">
-                    <template v-slot:[`item.visitor_id`]="{ item }">
-                        <div>
-                            <v-btn icon :to="'/visitors-list/'+item.visitor_id"  color="teal" class="mx-1">
-                            <v-icon> mdi-pencil-outline </v-icon>
-                            </v-btn>
-                            <v-btn color="error" icon class="mx-1" @click="selectVisitors(item)" >
-                                <v-icon> mdi-delete-outline </v-icon>
-                            </v-btn>
-                        </div>
-                    </template>
-                </v-data-table>
-            </v-card-text>
-            
-            <v-card-actions v-if="selected_rows.length > 0">
-                <v-btn color="error" @click="deleteVisitorsList">{{$store.getters.language.data.visitors.delete_list_btn}}</v-btn>
-            </v-card-actions>
-                
-        </v-card>
-    </v-flex> -->
-</v-layout>
+
 </v-container>
 <v-dialog v-model="delete_dialog" persistent max-width="400">
     <v-card>

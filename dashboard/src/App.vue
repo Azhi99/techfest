@@ -9,7 +9,9 @@
 </template>
       
 <script>
+import axios from 'axios'
 import APPNavbar from './components/Navbar.vue'
+
 export default {
     components:{
         APPNavbar
@@ -19,5 +21,12 @@ export default {
     data: () => ({
         //
     }),
+
+    mounted() {
+        const token = localStorage.getItem('techfest_token')
+        if(token) {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+        }
+    }
 };
 </script>
