@@ -37,6 +37,7 @@ class Visitors {
     }
     async createOne(data) {
         var d = new Date();
+        d.setHours(d.getHours() - 3);
         data.visitor_registration_datetime = d
         const insertedData = await db(table_name).insert(data)
             .then(data => {
