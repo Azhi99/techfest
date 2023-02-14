@@ -11,7 +11,12 @@ Vue.use(excel)
 
 Vue.config.productionTip = false
 import axios from 'axios'
-let api = 'http://localhost:5000/'
+var api = ''
+if(process.env.NODE_ENV === 'development'){
+    api = 'http://localhost:3000'
+} else {
+    api = 'https://apitechfest.rabarhama.com'
+}
 axios.defaults.baseURL = api;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
