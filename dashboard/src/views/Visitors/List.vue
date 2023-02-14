@@ -19,7 +19,7 @@
                         </v-text-field> -->
                 
                         <v-btn  color="primary" block :loading="loading_btn" type="submit" x-large>{{$store.getters.language.data.visitors.add_btn}}</v-btn>
-                        <v-btn  color="primary" class="mt-2" block :loading="loading_btn" @click="addVisitorAndCheck()"  x-large>{{$store.getters.language.data.visitors.add_and_check_btn}}</v-btn>
+                        <!-- <v-btn  color="primary" class="mt-2" block :loading="loading_btn" @click="addVisitorAndCheck()"  x-large>{{$store.getters.language.data.visitors.add_and_check_btn}}</v-btn> -->
                     </div>
                 </form>
 

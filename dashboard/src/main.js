@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 import axios from 'axios'
 var api = ''
 if(process.env.NODE_ENV === 'development'){
-    api = 'http://localhost:3000'
+    api = 'http://localhost:5000'
 } else {
     api = 'https://apitechfest.rabarhama.com'
 }
