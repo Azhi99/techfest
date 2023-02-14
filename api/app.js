@@ -48,8 +48,6 @@ app.use('/cities',cities)
 
 app.post('/verifyToken', (req, res, next) => {
     const token = req.body.token
-    console.log(process.env.TOKEN_SECRET);
-    console.log(token);
     if (token) {
         jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
             if (err) {
