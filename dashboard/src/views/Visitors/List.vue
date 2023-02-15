@@ -13,7 +13,7 @@
                             class="mx-1"  filled required>
                         </v-text-field>
                         <v-autocomplete class="mx-1" filled dense :label="$store.getters.language.data.cities.city_name" :items="cities" item-text="city_name" item-value="city_id" v-model="visitors.city_id"></v-autocomplete>
-                        
+                        <v-select class="mx-1" filled dense label="Type" :items="[{text: 'Visitor', value: 'visitor'}, {text: 'Company', value: 'company'}]" item-text="text" item-value="value" v-model="visitors.visitor_type"></v-select>
                         <!-- <v-text-field v-model="visitors.visitor_code" type="text" :label="$store.getters.language.data.visitors.visitor_code" dense
                             class="mx-1"  filled required>
                         </v-text-field> -->
@@ -52,10 +52,11 @@
         data() {
             return {
                 visitors: {
-                    city_id: 1
+                    city_id: 1,
+                    visitor_type: 'visitor'
                 },
                 search: '',
-                loading : true,
+                loading : false,
                 loading_btn:false,
                 selected_rows : [],
                 snackbar: {
@@ -100,7 +101,7 @@
             
         },
         mounted(){
-            this.readVisitors();
+            // this.readVisitors();
             this.readCities();
         },
         methods: {
@@ -108,7 +109,8 @@
                 this.loading_btn = true
                 requests.createVisitors(this.visitors).then(r => {
                         this.visitors = {
-                            city_id: 1
+                            city_id: 1,
+                            visitor_type: 'visitor'
                         }
                         this.rows.push(
                             r.data.new_data

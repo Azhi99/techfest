@@ -100,6 +100,12 @@ export default {
                 value: 'city_name',
             },
             { 
+                text: 'Type',
+                align: 'start',
+                sortable: true,
+                value: 'visitor_type',
+            },
+            { 
                 text: this.$store.getters.language.data.visitors.visitor_code,
                 align: 'start',
                 sortable: true,
@@ -129,6 +135,12 @@ export default {
                 align: 'start',
                 sortable: true,
                 value: 'city_name',
+            },
+            { 
+                text: 'Type',
+                align: 'start',
+                sortable: true,
+                value: 'visitor_type',
             },
             { 
                 text: this.$store.getters.language.data.visitors.visitor_code,

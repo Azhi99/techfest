@@ -8,6 +8,7 @@ function validationForm(reques) {
         visitor_code: Joi.string().optional().allow(null, ''),
         city_id: Joi.number().integer().required(),
         user_id: Joi.number().integer().optional(),
+        visitor_type: Joi.string().required(),
     });
     return schema.validate(reques)
 }
