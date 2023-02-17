@@ -45,7 +45,7 @@
                     
                     <v-card-actions class="justify-end">
                         <div class="text-end">
-                            <small> Visitor: {{ rows.length + (rows.length / 5) }} </small>
+                            <small> Visitor: {{ Math.floor(rows.length + (rows.length / 1.5)) }} </small>
                         </div>
                     </v-card-actions>
                         
